@@ -5,28 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Somador de Decimais</title>
 </head>
 
 <body>
-    <header>
-        <h1>Somador de números quebrados</h1>
+    <header class="header-container">
+        <h1>Somador de Decimais</h1>
     </header>
-    <main>
-        <section>
-            <input type="text" id="inputToConvert">
+    <main class="main-container">
+        <section class="generic-box input-box">
+            <h2>Coloque aqui os Números</h2>
+            <input type="text">
             <button onclick="main()" id="2">Somar</button>
         </section>
 
-        <section>
+        <section class="generic-box result-box">
             <h2>Resultado</h2>
             <div>
-                <span id="result"></span>
+                <span class="result"></span>
             </div>
         </section>
-    </main>
 
-    <p>exemplo:2,00 2,00 2,00 2,00 2,00 2,00</p>
+        <article class="main-exemple">
+            <h3>Exemplo:</h3>
+            <p>2,00 2,00 2,00 2,00 2,00 2,00</p>
+        </article>
+    </main>
     <script src="script.js"></script>
 </body>
 

@@ -1,43 +1,62 @@
-function main() {
-    const userInput = getInputValue()
-
-    if (auditUserInput(userInput) == true) {
-        return showErrorMensage()
-    } else {
-        const inputNumbers = transformToArrayOfNumbers(userInput)
-        const sum = inputNumbers.reduce((prev, current) => {
-            return prev + current
-        })
-
-        const Result = sum / 100
-        document.getElementById('result').innerHTML = Result
-    }
+const getUserInput = function () {
+    const userInputValue = document.querySelector('input').value;
+    return userInputValue;
 }
 
-function getInputValue() {
-    const inputValue = document.getElementById('inputToConvert').value
-    return inputValue
+const splitIntoArray = function (userInputValue) {
+    const split = userInputValue.split(' ');
+    return split;
 }
 
-function transformToArrayOfNumbers(userInput) {
-    const inputArray = userInput.split(" ");
-    const formatedArray = inputArray.map((value) => {
-        const removeComma = value.replace(',', '')
-        const transformedToNumber = parseInt(removeComma)
-        return transformedToNumber
-    })
-    return formatedArray
+const validateInput = function (inputValue) {
+    const regex = /^([0-9]{1,},[0-9]{2})$/;
+    const splited = splitIntoArray(inputValue);
+
+    const result = splited.every(value => regex.test(value));
+    return result;
 }
 
-function auditUserInput(inputValue) {
-    const InitialEndSpacePattern = /^\s|\s$/g;
-    const isALetter = /[A-Z]/ig;
-    if (InitialEndSpacePattern.test(inputValue) == true) { return true }
-    if (isALetter.test(inputValue) == true) { return true }
+const sumAndDivide = function (listOfNumbers) {
+    const result = listOfNumbers.reduce((a, b) => a + b);
+    return result / 100;
 }
 
-function showErrorMensage() {
-    const errorMensage = 'Erro! Verifique se há letras ou espaços no começo ou no final da entrada de dados! \n '
-    document.getElementById('result').innerHTML = errorMensage
+const showInHTML = function (result) {
+    const formatedOutput = String(result.toFixed(2)).replace('.', ',')
+    document.querySelector('span.result').innerHTML = formatedOutput
+}
 
+const errorFunction = function () {
+    const msg = `
+        <div class="error-mensage">
+            <h2>Erro! Verifique se possui um dos seguintes problemas:</h2>
+            <ul>
+                <li>Espaços vazios no começo ou no final da sentença;</li>
+                <li>Espaços duplos;</li>
+                <li>Letras junto aos números;</li>
+                <li>Formatação errada: "X,XX", entre cada número decimal a ser somado é necessário um espaço;</li>
+            </ul>
+        <div>
+    `
+    document.querySelector('span.result').innerHTML = msg
+}
+
+const main = function () {
+    const input = getUserInput();
+    try {
+        if (validateInput(input)) {
+            const splited = splitIntoArray(input);
+
+            const numberListNoComma = splited.map((value) => {
+                const newValue = value.replace(',', '');
+                return parseFloat(newValue);
+            })
+
+            const result = sumAndDivide(numberListNoComma)
+            showInHTML(result)
+        }
+        else {
+            throw errorFunction()
+        }
+    } catch (e) { console.log(e); }
 }

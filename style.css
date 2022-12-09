@@ -1,0 +1,105 @@
+body {
+    background-color: #252525;
+    color: white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-container {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background-color: #444444;
+    border-bottom: gray 2px solid;
+}
+
+.header-container h1 {
+    outline: none;
+    border: none;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'input    result'
+        'exemple exemple';
+    gap: 1rem;
+    align-content: center;
+    justify-items: center;
+}
+
+.generic-box {
+    background-color: #444444;
+    border-radius: 24px;
+    padding: 24px;
+
+    margin-top: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    margin: 3rem 1rem 0 1rem;
+}
+
+.generic-box button {
+    width: 100%;
+    height: 3rem;
+    padding: 8px;
+
+    background-color: #999999;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+}
+
+.generic-box button:hover {
+    background-color: #cfcfcf;
+    cursor: pointer;
+}
+
+.input-box {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+    grid-area: input;
+}
+
+.input-box input {
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.result-box {
+    width: 80%;
+    grid-area: result;
+}
+
+.result-box h2 {
+    text-align: center;
+}
+
+.result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.error-mensage {
+    font-size: 1rem;
+}
+
+.main-exemple {
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+    width: 100%;
+    /*background-color: #444444;*/
+    grid-area: exemple;
+}
